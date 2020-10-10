@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PROJECT_IMDB.Entity", "PROJECT_IMDB.Entity\PROJECT_IMDB.Entity.csproj", "{65A477A2-916F-408E-AD00-6BAE9E706EF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PROJECT_IMDB.Map", "PROJECT_IMDB.Map\PROJECT_IMDB.Map.csproj", "{5C1D42BC-EF24-4740-97AB-2DE98B088985}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{65A477A2-916F-408E-AD00-6BAE9E706EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65A477A2-916F-408E-AD00-6BAE9E706EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65A477A2-916F-408E-AD00-6BAE9E706EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C1D42BC-EF24-4740-97AB-2DE98B088985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C1D42BC-EF24-4740-97AB-2DE98B088985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C1D42BC-EF24-4740-97AB-2DE98B088985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C1D42BC-EF24-4740-97AB-2DE98B088985}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
