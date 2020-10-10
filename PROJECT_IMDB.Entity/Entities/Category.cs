@@ -9,6 +9,6 @@ namespace PROJECT_IMDB.Entity.Entities
         public string Name { get; set; }
 
 
-        public virtual ICollection<FilmToCategory> FilmToCategories { get; set; }
+        public ICollection<FilmToCategory> FilmToCategories { get; set; }
     }
 }

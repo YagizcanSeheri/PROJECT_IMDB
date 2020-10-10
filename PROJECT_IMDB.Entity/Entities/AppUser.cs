@@ -17,9 +17,9 @@ namespace PROJECT_IMDB.Entity.Entities
         public string Email { get; set; }
         public Role Role { get; set; }
 
-        public virtual ICollection<Film> Films { get; set; }
-        public virtual ICollection<Like> Likes { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+        public ICollection<Film> Films { get; set; }
+        public ICollection<Like> Likes { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
 
     }

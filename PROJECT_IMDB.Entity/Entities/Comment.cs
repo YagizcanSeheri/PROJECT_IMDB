@@ -9,9 +9,9 @@ namespace PROJECT_IMDB.Entity.Entities
         public string Content { get; set; }
 
         public int FilmId { get; set; }
-        public virtual Film Film { get; set; }
+        public Film Film { get; set; }
 
         public int AppUserId { get; set; }
-        public virtual AppUser AppUser { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

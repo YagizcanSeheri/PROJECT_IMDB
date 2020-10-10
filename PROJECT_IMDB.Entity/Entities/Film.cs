@@ -13,16 +13,18 @@ namespace PROJECT_IMDB.Entity.Entities
         public string Content { get; set; }
         public string VideoUrl { get; set; }
         public string Image { get; set; }
+
         [NotMapped]
         [FileExtensions]
-        public IFormFile MyProperty { get; set; }
+        public IFormFile ImageUpload { get; set; }
 
         public int AppUserId { get; set; }
-        public virtual AppUser AppUser { get; set; }
-        public virtual ICollection<FilmToCategory> FilmToCategories { get; set; }
+        public AppUser AppUser { get; set; }
 
-        public virtual ICollection<Like> Likes { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+        public ICollection<FilmToCategory> FilmToCategories { get; set; }
+
+        public ICollection<Like> Likes { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
     }
 }

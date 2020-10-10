@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PROJECT_IMDB.Entity.Entities;
 using PROJECT_IMDB.Map.Mapping.Abstraction;
 using System;
@@ -21,15 +22,19 @@ namespace PROJECT_IMDB.Map.Mapping.Concrete
 
             builder.HasMany(x => x.Likes)
                .WithOne(x => x.Film)
-              .HasForeignKey(x => x.FilmId);
+              .HasForeignKey(x => x.FilmId)
+              .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.Restrict);
 
             builder.HasMany(x => x.Comments)
                .WithOne(x => x.Film)
-              .HasForeignKey(x => x.FilmId);
+              .HasForeignKey(x => x.FilmId)
+              .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.Restrict);
 
             builder.HasOne(X => X.AppUser)
                 .WithMany(x => x.Films)
-                .HasForeignKey(x => x.AppUserId);
+                .HasForeignKey(x => x.AppUserId)
+                .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.Restrict);
+
             base.Configure(builder);
         }
     }

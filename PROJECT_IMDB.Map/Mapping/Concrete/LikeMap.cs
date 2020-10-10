@@ -13,11 +13,14 @@ namespace PROJECT_IMDB.Map.Mapping.Concrete
         {
             builder.HasOne(x => x.AppUser)
                 .WithMany(x => x.Likes)
-                .HasForeignKey(x => x.AppUserId);
+                .HasForeignKey(x => x.AppUserId)
+                .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.Film)
                 .WithMany(x => x.Likes)
-                .HasForeignKey(x => x.FilmId);
+                .HasForeignKey(x => x.FilmId)
+                .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.Restrict);
+
             base.Configure(builder);
         }
     }

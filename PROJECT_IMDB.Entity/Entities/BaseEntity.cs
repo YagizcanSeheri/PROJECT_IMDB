@@ -16,7 +16,6 @@ namespace PROJECT_IMDB.Entity.Entities
     {
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int Id { get; set; }
 
         private DateTime _createDate = DateTime.Now;
@@ -25,8 +24,10 @@ namespace PROJECT_IMDB.Entity.Entities
             get { return _createDate; }
             set { _createDate = value; }
         }
+
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
+
         private Status _status = Status.Active;
         public Status Status
         {

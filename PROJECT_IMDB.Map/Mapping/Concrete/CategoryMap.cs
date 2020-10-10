@@ -17,6 +17,7 @@ namespace PROJECT_IMDB.Map.Mapping.Concrete
             builder.HasMany(x => x.FilmToCategories)
                 .WithOne(x => x.Category)
                 .HasForeignKey(x => x.CategoryId);
+
             base.Configure(builder);
         }
     }
