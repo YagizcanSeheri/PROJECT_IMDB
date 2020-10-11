@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PROJECT_IMBD.Service.Services.Concrete
 {
@@ -14,72 +15,73 @@ namespace PROJECT_IMBD.Service.Services.Concrete
     {
         private static ProjectContext _context;
         private DbSet<T> dbSet { get; set; }
-
+         
         public BaseService(ProjectContext context)
         {
             _context = context;
             dbSet = _context.Set<T>();
         }
 
-        public void Add(T item)
+        
+        public async Task Add(T item)
         {
-            _context.Set<T>().Add(item);
-            Save();
+            await _context.Set<T>().AddAsync(item);
+            await Save();
         }
 
-        public void Add(List<T> items)
+        public async Task Add(List<T> items)
         {
-            _context.Set<T>().AddRange(items);
-            Save();
+           await _context.Set<T>().AddRangeAsync(items);
+            await Save();
         }
 
-        public bool Any(Expression<Func<T, bool>> exp)
+        public async Task<bool> Any(Expression<Func<T, bool>> exp)
         {
-            return _context.Set<T>().Any(exp);
+            return await _context.Set<T>().AnyAsync(exp);
         }
 
-        public List<T> GetActive()
+        public async Task<List<T>> GetActive()
         {
-            return _context.Set<T>().Where(x => x.Status != Status.Passive).ToList();
+            return await _context.Set<T>().Where(x => x.Status != Status.Passive).ToListAsync();
         }
 
-        public List<T> GetAll()
+        public async Task<List<T>> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return await _context.Set<T>().ToListAsync();
         }
 
-        public T GetByDefault(Expression<Func<T, bool>> exp)
+        public async Task<T> GetByDefault(Expression<Func<T, bool>> exp)
         {
-            return _context.Set<T>().Where(exp).FirstOrDefault();
+            return await _context.Set<T>().Where(exp).FirstOrDefaultAsync();
         }
 
-        public T GetById(int id)
+        public async Task<T> GetById(int id)
         {
-            return _context.Set<T>().Find(id);
+            return await _context.Set<T>().FindAsync(id);
         }
 
-        public List<T> GetDefault(Expression<Func<T, bool>> exp)
+        public async Task<List<T>> GetDefault(Expression<Func<T, bool>> exp)
         {
-            return _context.Set<T>().Where(exp).ToList();
+            return await _context.Set<T>().Where(exp).ToListAsync();
         }
 
 
-        public void Remove(int id)
+        public async Task Remove(int id)
         {
-            T item = GetById(id);
+            T item = await GetById(id);
             item.Status = Status.Passive;
             item.DeleteDate = DateTime.Now;
-            Save();
+            await Save();
         }
 
-        public int Save()
+        public async Task<int> Save()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
 
-        public void Update(T item)
+        public async Task Update(T item)
         {
-            T updateItem = GetById(item.Id);
+            T updateItem =await GetById(item.Id);
             dbSet.Update(updateItem);
         }
     }

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PROJECT_IMBD.Service.Services.Abstraction;
+using PROJECT_IMBD.Service.Services.Concrete;
 using PROJECT_IMDB.DAL.Context;
 
 namespace PROJECT_IMDB.UI
@@ -27,6 +29,13 @@ namespace PROJECT_IMDB.UI
             
             services.AddControllersWithViews();
             services.AddDbContext<ProjectContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IAppUserService, AppUserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ILikeService, LikeService>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IFilmService, FilmService>();
+            services.AddScoped<IFilmToCategoryService, FilmToCategoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,9 +57,16 @@ namespace PROJECT_IMDB.UI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                
             });
         }
     }
