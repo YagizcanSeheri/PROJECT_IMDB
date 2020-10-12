@@ -28,7 +28,7 @@ namespace PROJECT_IMDB.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create(Category category)
         {
             await _categoryService.Add(category);
-            return RedirectToAction("/Admin/Category/List");
+            return RedirectToAction("/Admin/Category/Index");
         }
     }
 }

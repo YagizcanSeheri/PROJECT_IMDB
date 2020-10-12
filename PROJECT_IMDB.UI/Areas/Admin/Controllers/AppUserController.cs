@@ -26,7 +26,6 @@ namespace PROJECT_IMDB.UI.Areas.Admin.Controllers
              return View(await _appUserService.GetAll());
         }
 
-        [HttpGet]
         public IActionResult Create() 
         {
             return View();
@@ -39,6 +38,39 @@ namespace PROJECT_IMDB.UI.Areas.Admin.Controllers
             await _appUserService.Add(appUser);
             return RedirectToAction("/Admin/AppUser/Index");
 
+        }
+
+        public async Task<IActionResult> Update(int id) 
+        {
+            AppUser appUser = await _appUserService.GetById(id);
+            return View(appUser);
+            
+            
+        }
+
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id,AppUser appUser) 
+        {
+            appUser = await _appUserService.GetById(id);
+
+            if (ModelState.IsValid)
+            {
+               
+               await _appUserService.Update(id);
+                TempData["message"] = "User is Uptated";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("AppUser", appUser);
+            }
+            
+        }
+        public async Task<IActionResult> Delete(int id) 
+        {
+            await _appUserService.Remove(id);
+            return RedirectToAction("Index");
         }
 
 

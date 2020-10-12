@@ -12,7 +12,7 @@ namespace PROJECT_IMBD.Service.Services.Abstraction
         Task Add(T item);
         Task Add(List<T> items);
 
-        Task Update(T item);
+        Task Update(int id);
 
         Task Remove(int id);
 
