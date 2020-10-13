@@ -49,9 +49,31 @@ namespace PROJECT_IMDB.UI.Areas.Admin.Controllers
             film.Image = imageName;
 
             await _filmService.Add(film);
-            return RedirectToAction("/Admin/Film/İndex");
+            return RedirectToAction("Index");
 
 
+        }
+        public async Task<IActionResult> Update(int id)
+        {
+            Film film = await _filmService.GetById(id);
+            return View(film);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(Film film)
+        {
+            if (ModelState.IsValid)
+            {
+                await _filmService.Update(film);
+                TempData["message"] = "Film is updated..!";
+                return RedirectToAction("Index");
+            }
+            else
+                return View("Film", film);
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _filmService.Remove(id);
+            return RedirectToAction("Index");
         }
     }
 }

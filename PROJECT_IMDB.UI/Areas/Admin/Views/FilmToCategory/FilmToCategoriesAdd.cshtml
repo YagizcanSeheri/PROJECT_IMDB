@@ -1,0 +1,44 @@
+﻿@model PROJECT_IMDB.Entity.Entities.FilmToCategory
+
+@{
+    ViewData["Title"] = " | Film To Categories Add";
+}
+
+<h1>Film To Categories Add</h1>
+
+<h4>FilmToCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="FilmToCategory" asp-action="FilmToCategoriesAdd" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" asp-items="@ViewBag.CategoryId" class="form-control">
+                    <option value="0">choose a category</option>
+
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FilmId" class="control-label"></label>
+                <select asp-for="FilmId" asp-items="@ViewBag.FilmId" class="form-control">
+                    <option value="0">Choose a film</option>
+
+                </select>
+                <span asp-validation-for="FilmId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
