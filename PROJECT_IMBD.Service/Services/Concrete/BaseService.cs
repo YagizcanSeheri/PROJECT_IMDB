@@ -79,13 +79,13 @@ namespace PROJECT_IMBD.Service.Services.Concrete
             return await _context.SaveChangesAsync();
         }
 
-        public async Task Update(int id)
+        public async Task Update(T item)
         {
-            T updateItem =await GetById(id);
-            updateItem.UpdateDate = DateTime.Now;
-            updateItem.Status = Status.Modified;
+            //T updateItem =await GetById(item.Id);
+            item.UpdateDate = DateTime.Now;
+            item.Status = Status.Modified;
+            dbSet.Update(item);
             await Save();
-            dbSet.Update(updateItem);
         }
     }
 }

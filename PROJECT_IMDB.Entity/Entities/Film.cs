@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using PROJECT_IMDB.Entity.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace PROJECT_IMDB.Entity.Entities
         public string Image { get; set; }
 
         [NotMapped]
-        [FileExtensions]
+        [FileExtansion]
         public IFormFile ImageUpload { get; set; }
 
         public int AppUserId { get; set; }

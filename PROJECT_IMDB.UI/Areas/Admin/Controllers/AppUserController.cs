@@ -40,6 +40,7 @@ namespace PROJECT_IMDB.UI.Areas.Admin.Controllers
 
         }
 
+        [HttpGet]
         public async Task<IActionResult> Update(int id) 
         {
             AppUser appUser = await _appUserService.GetById(id);
@@ -50,14 +51,12 @@ namespace PROJECT_IMDB.UI.Areas.Admin.Controllers
 
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id,AppUser appUser) 
+        public async Task<IActionResult> Update(AppUser appUser) 
         {
-            appUser = await _appUserService.GetById(id);
-
             if (ModelState.IsValid)
             {
                
-               await _appUserService.Update(id);
+               await _appUserService.Update(appUser);
                 TempData["message"] = "User is Uptated";
                 return RedirectToAction("Index");
             }
