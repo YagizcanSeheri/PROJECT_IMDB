@@ -28,7 +28,38 @@ namespace PROJECT_IMDB.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create(Category category)
         {
             await _categoryService.Add(category);
-            return RedirectToAction("/Admin/Category/Index");
+            return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Update(int id) 
+        {
+            Category category = await _categoryService.GetById(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                await _categoryService.Update(category);
+                TempData["message"] = "Category is Uptated";
+                return RedirectToAction("Index");
+            }
+            else
+                return View("Category", category);
+        }
+
+        public async Task<IActionResult> Delete(int id) 
+        {
+            await _categoryService.Remove(id);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _categoryService.GetAll());
+        }
+        
     }
 }

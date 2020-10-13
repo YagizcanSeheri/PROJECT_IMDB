@@ -81,7 +81,6 @@ namespace PROJECT_IMBD.Service.Services.Concrete
 
         public async Task Update(T item)
         {
-            //T updateItem =await GetById(item.Id);
             item.UpdateDate = DateTime.Now;
             item.Status = Status.Modified;
             dbSet.Update(item);
